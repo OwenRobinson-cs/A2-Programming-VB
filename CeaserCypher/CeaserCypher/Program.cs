@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace CeaserCypher
 {
@@ -14,14 +15,20 @@ namespace CeaserCypher
             string Message =("oo ii ee aa bb cc ee");
             Message = Encrypt(Message, 15, 8);
             Console.WriteLine(Message);
-            
-            Console.WriteLine(Decrypt(Message, 15, 8));
+
+
+            using (StreamWriter CurrentFile = new StreamWriter(@"CypherText.txt"))
+            {
+                CurrentFile.WriteLine(Message);
+            }
+            Console.WriteLine("Nessage Saved to file: CypherText");
+
+             Console.WriteLine(Decrypt(Message, 15, 8));
             Console.ReadLine();
         }
 
         private static string Encrypt(string Plaintext, int ShiftKey1, int ShiftKey2)
         {
-            string ciphertext = "";
             char[] PlainTextArray = Plaintext.ToCharArray();
             int ASCii = 0;
             int KeyNum = 1;
