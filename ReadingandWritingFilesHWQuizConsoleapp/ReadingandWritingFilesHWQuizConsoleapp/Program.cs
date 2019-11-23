@@ -9,6 +9,7 @@ namespace ReadingandWritingFilesHWQuizConsoleapp
 {
     class Program
     {
+        static string[,] Questions = new string[10, 2];
         static void Main(string[] args)
         {
             Menu();
@@ -19,7 +20,7 @@ namespace ReadingandWritingFilesHWQuizConsoleapp
             //Declare Variables
             int Selection;
             string input;
-            string[,] Questions = new string[10, 2];
+            
 
             //Output menu
             Console.WriteLine("Menu");
@@ -40,7 +41,7 @@ namespace ReadingandWritingFilesHWQuizConsoleapp
                 Console.WriteLine("Selection Chosen: Load Questions");
                 PressAnyKey();
                 Console.Clear();
-                LoadQuestions(Questions);
+                LoadQuestions();
             }
             else if (Selection == 2)
             {
@@ -48,14 +49,14 @@ namespace ReadingandWritingFilesHWQuizConsoleapp
                 PressAnyKey();
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Clear();
-                WriteQuestions(Questions);
+                WriteQuestions();
             }
             else if (Selection == 3)
             {
                 Console.WriteLine("Selection Chosen: Take the Quiz");
                 PressAnyKey();
                 Console.Clear();
-              //  PlayQuiz();
+                PlayQuiz(Questions);
             }
             else
             {
@@ -64,7 +65,7 @@ namespace ReadingandWritingFilesHWQuizConsoleapp
             }
         }
 
-        static void LoadQuestions(string[,] Questions)
+        static void LoadQuestions()
         {
             Console.WriteLine("Load Questions \n");
 
@@ -84,13 +85,21 @@ namespace ReadingandWritingFilesHWQuizConsoleapp
                     CurrentFile.ReadLine();
                     for (int i = 0; i < 10; i++)
                     {
-                        Questions[i, 1] = CurrentFile.ReadLine();
+                        Questions[i, 0] = CurrentFile.ReadLine();
                     }
                     CurrentFile.ReadLine();
                     for (int i = 0; i < 10; i++)
                     {
-                        Questions[i, 2] = CurrentFile.ReadLine();
+                        Questions[i, 1] = CurrentFile.ReadLine();
                     }
+                }
+                for (int i = 0; i < 10; i++)
+                {
+                    Console.WriteLine(Questions[i, 0]);
+                }
+                for (int x = 0; x < 10; x++)
+                {
+                    Console.WriteLine(Questions[x, 1]);
                 }
                 Console.WriteLine("File Loaded Successfully.");
                 PressAnyKey();
@@ -118,7 +127,7 @@ namespace ReadingandWritingFilesHWQuizConsoleapp
             
         }
 
-        static void WriteQuestions(string[,] Questions)
+        static void WriteQuestions()
         {
             Console.WriteLine("Write Questions");
 
@@ -133,18 +142,18 @@ namespace ReadingandWritingFilesHWQuizConsoleapp
 
             //Input Questions
             Console.WriteLine("Questions: ");
-            for (int i = 1; i < 11; i++)
+            for (int i = 0; i < 10; i++)
             {
-                Console.WriteLine("Enter Question {0}", i);
-                Questions[i, 1] = Console.ReadLine();
+                Console.WriteLine("Enter Question {0}", i + 1);
+                Questions[i, 0] = Console.ReadLine();
             }
 
             //Input Answers
             Console.WriteLine("Answers: (will be saved as all lowercase)");
-            for (int i = 1; i < 11; i++)
+            for (int i = 0; i < 10; i++)
             {
-                Console.WriteLine("Enter the Answer for Question {0}", i);
-                Questions[i, 2] = Console.ReadLine().ToLower();
+                Console.WriteLine("Enter the Answer for Question {0}", i + 1);
+                Questions[i, 1] = Console.ReadLine().ToLower();
             }
 
             //Save Questions && Answers to File
@@ -154,18 +163,76 @@ namespace ReadingandWritingFilesHWQuizConsoleapp
                 CurrentFile.WriteLine("Questions: ");
                 for (int i = 0; i < 10; i++)
                 {
-                    CurrentFile.WriteLine(Questions[i, 1]);
+                    CurrentFile.WriteLine(Questions[i, 0]);
                 }
                 CurrentFile.WriteLine("Answers: ");
                 for (int i = 0; i < 10; i++)
                 {
-                    CurrentFile.WriteLine(Questions[i, 2]);
+                    CurrentFile.WriteLine(Questions[i, 1]);
+                }
+            }               
+            //Output Complete
+
+            Console.WriteLine("Questions saved to file {0} and loaded into Memory.", fileName);
+            PressAnyKey();
+            Console.Clear();
+            Menu();
+        }
+
+        static void PlayQuiz(string[,] Questions)
+        {
+
+            
+            Console.WriteLine("Play Quiz \n");
+
+            //Show Questions
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine(Questions[i, 0]);
+            }
+
+            //Declare Variables
+            int Score = 0;
+            string name;
+            string userAnswer;
+
+            //Enter Name
+            Console.Write("Enter your Name:");
+            name = Console.ReadLine();
+
+
+
+            //Play Quiz
+
+            Console.WriteLine("Press Any Key to Begin");
+            Console.ReadKey();
+            Console.Clear();
+            for (int i = 0; i < 10; i++)
+            {
+                //Ask Question
+                Console.WriteLine(" {0}) {1}", i + 1, Questions[i, 0]);
+                //Get && Compare Answer
+                userAnswer = Console.ReadLine().ToLower();
+                if (userAnswer == Questions[i, 1])
+                {
+                    Console.WriteLine("Correct");
+                    Score++;
+                    Console.WriteLine("Press any key to continue to the next question.");
+                    Console.ReadLine();
+                    Console.Clear();
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect, the Answer was: {0}", Questions[i, 1]);
+                    Console.WriteLine("Press any key to continue to the next question.");
+                    Console.ReadLine();
+                    Console.Clear();
                 }
             }
 
-            //Output Complete
+            //Display results
+            Console.WriteLine("Score for {0} was: {1}", name, Score);
 
-            Console.WriteLine("Questions saved to file {0} and loaded into Memory.");
             PressAnyKey();
             Console.Clear();
             Menu();
