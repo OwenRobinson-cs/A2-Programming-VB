@@ -4,15 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EC5E3CA0-0E1C-4E73-BF55-043DFEB6F523}</ProjectGuid>
+    <ProjectGuid>{5190770B-D3AE-4B07-AC1E-233242C6179F}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ReadingandWritingFilesHWQuizConsoleapp</RootNamespace>
-    <AssemblyName>ReadingandWritingFilesHWQuizConsoleapp</AssemblyName>
+    <RootNamespace>DataStructures</RootNamespace>
+    <AssemblyName>DataStructures</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -44,8 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuizReadingandWritingFiles.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
