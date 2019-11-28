@@ -66,6 +66,8 @@ namespace ConsoleApp2
             Random RNG = new Random(30);
             CurrentNumber = RNG.Next(30);
             char CorrectLetter;
+            char UserInput;
+            string unfilteredinput;
             //Ask Question
             for (int i = 0; i < 10; i++)
             {
@@ -82,37 +84,45 @@ namespace ConsoleApp2
                 int AnswerOrder = RNG1.Next(4);
                 if (AnswerOrder == 1)
                 {
-                    Console.WriteLine(Questions[CurrentNumber].Answer1);
-                    Console.WriteLine(Questions[CurrentNumber].Answer2);
-                    Console.WriteLine(Questions[CurrentNumber].Answer3);
-                    Console.WriteLine(Questions[CurrentNumber].CorrectAnswer);
+                    Console.WriteLine("A) " + Questions[CurrentNumber].Answer1);
+                    Console.WriteLine("B) " + Questions[CurrentNumber].Answer2);
+                    Console.WriteLine("C) " + Questions[CurrentNumber].Answer3);
+                    Console.WriteLine("D) " + Questions[CurrentNumber].CorrectAnswer);
                     CorrectLetter = 'D';
 
                 }
                 else if (AnswerOrder == 2)
                 {
-                    Console.WriteLine(Questions[CurrentNumber].Answer3);
-                    Console.WriteLine(Questions[CurrentNumber].CorrectAnswer);
-                    Console.WriteLine(Questions[CurrentNumber].Answer2);
-                    Console.WriteLine(Questions[CurrentNumber].Answer1);
+                    Console.WriteLine("A) " + Questions[CurrentNumber].Answer3);
+                    Console.WriteLine("B) " + Questions[CurrentNumber].CorrectAnswer);
+                    Console.WriteLine("C) " + Questions[CurrentNumber].Answer2);
+                    Console.WriteLine("D) " + Questions[CurrentNumber].Answer1);
                     CorrectLetter = 'B';
                 }
                 else if (AnswerOrder == 4)
                 {
 
-                    Console.WriteLine(Questions[CurrentNumber].Answer2);
-                    Console.WriteLine(Questions[CurrentNumber].Answer1);
-                    Console.WriteLine(Questions[CurrentNumber].CorrectAnswer);
-                    Console.WriteLine(Questions[CurrentNumber].Answer3);
+                    Console.WriteLine("A) " + Questions[CurrentNumber].Answer2);
+                    Console.WriteLine("B) " + Questions[CurrentNumber].Answer1);
+                    Console.WriteLine("C) " +Questions[CurrentNumber].CorrectAnswer);
+                    Console.WriteLine("D) " +Questions[CurrentNumber].Answer3);
                     CorrectLetter = 'C';
                 }
                 else
                 {
-                    Console.WriteLine(Questions[CurrentNumber].CorrectAnswer);
-                    Console.WriteLine(Questions[CurrentNumber].Answer3);
-                    Console.WriteLine(Questions[CurrentNumber].Answer1);
-                    Console.WriteLine(Questions[CurrentNumber].Answer2);
+                    Console.WriteLine("A) " + Questions[CurrentNumber].CorrectAnswer);
+                    Console.WriteLine("B) " + Questions[CurrentNumber].Answer3);
+                    Console.WriteLine("C) " + Questions[CurrentNumber].Answer1);
+                    Console.WriteLine("D) " + Questions[CurrentNumber].Answer2);
                     CorrectLetter = 'A';
+                }
+
+                //Get Answer 
+                Console.Write("Please enter the letter next to the correct answer: ");
+                unfilteredinput = Console.ReadLine().ToUpper();
+                while (char.TryParse(unfilteredinput, out UserInput) = false)
+                {
+
                 }
             }
         }
