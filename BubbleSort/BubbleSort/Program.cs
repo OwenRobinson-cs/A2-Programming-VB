@@ -9,7 +9,7 @@ namespace BubbleSort
 {
     class Program
     {
-        public static int NumberofIntegers = 20;
+        public static int NumberofIntegers = 50000000;
         static void Main(string[] args)
         {
             
