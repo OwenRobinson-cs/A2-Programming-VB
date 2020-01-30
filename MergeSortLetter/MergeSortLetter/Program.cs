@@ -16,13 +16,13 @@ namespace MergeSortLetter
 
             Console.WriteLine("Merge Sort \n \n");
 
-            //Console.WriteLine("Unsorted Letters: ");
+            Console.WriteLine("Unsorted Letters: ");
 
-            //for (int i = 0; i < AmountofData; i++)
-            //{
-            //    Console.Write("{0}, ", UnsortedArray[i]);
-            //}
-            //Console.WriteLine("\n \n");
+            for (int i = 0; i < AmountofData; i++)
+            {
+                Console.Write("{0}, ", UnsortedArray[i]);
+            }
+            Console.WriteLine("\n \n");
 
             DateTime StartTime = DateTime.Now;
             MergeSort(UnsortedArray, 0, UnsortedArray.Length - 1);
