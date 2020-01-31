@@ -9,10 +9,11 @@ namespace BubbleSort
 {
     class Program
     {
-        public static int NumberofIntegers = 50000000;
+        public const int NumberofIntegers = 50000000;
+        public const int Highestinteger = 100;
         static void Main(string[] args)
         {
-            
+            Console.ForegroundColor = ConsoleColor.Green;
             int[] Elephants = new int[NumberofIntegers];
             Random RNG = new Random();
             Console.WriteLine("The Bubble Sort Program \n \n \n");
@@ -21,14 +22,18 @@ namespace BubbleSort
 
             GetNumbers(RNG, Elephants);
             Console.WriteLine("Task Completed");
-            Console.WriteLine("Printing Numbers");
+            DateTime EndTime = DateTime.Now;
 
-            for (int i = 0; i < NumberofIntegers ; i++)
-            {
-                Console.Write("{0}, ", Elephants[i]);
-            }
-            Console.WriteLine();
+            TimeSpan TimeTaken = EndTime - StartTime;
+            Console.WriteLine("Time taken = {0}ms", TimeTaken.TotalMilliseconds);
+            //Console.WriteLine("Printing Numbers");
 
+            //for (int i = 0; i < NumberofIntegers ; i++)
+            //{
+            //    Console.Write("{0}, ", Elephants[i]);
+            //}
+            //Console.WriteLine();
+            StartTime = DateTime.Now;
             Console.WriteLine("Sorting Array");
             SortArray(Elephants);
 
@@ -38,9 +43,9 @@ namespace BubbleSort
             }
             Console.WriteLine();
 
-            DateTime EndTime = DateTime.Now;
+            EndTime = DateTime.Now;
 
-            TimeSpan TimeTaken = EndTime - StartTime;
+            TimeTaken = EndTime - StartTime;
             Console.WriteLine("Time taken = {0}ms", TimeTaken.TotalMilliseconds);
             Console.ReadKey();
         }
@@ -52,7 +57,7 @@ namespace BubbleSort
 
             for (int i = 0; i < NumberofIntegers; i++)
             {
-                Elephants[i] = RNG.Next(51);
+                Elephants[i] = RNG.Next(Highestinteger + 1);
             }
         }
 
