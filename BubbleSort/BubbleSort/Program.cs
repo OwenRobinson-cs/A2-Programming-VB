@@ -9,11 +9,11 @@ namespace BubbleSort
 {
     class Program
     {
-        public const int NumberofIntegers = 50000000;
+        public const int NumberofIntegers = 50;
         public const int Highestinteger = 100;
         static void Main(string[] args)
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            //Console.ForegroundColor = ConsoleColor.Green;
             int[] Elephants = new int[NumberofIntegers];
             Random RNG = new Random();
             Console.WriteLine("The Bubble Sort Program \n \n \n");
@@ -36,6 +36,40 @@ namespace BubbleSort
             StartTime = DateTime.Now;
             Console.WriteLine("Sorting Array");
             SortArray(Elephants);
+
+            for (int i = 0; i < NumberofIntegers; i++)
+            {
+                Console.Write("{0}, ", Elephants[i]);
+            }
+            Console.WriteLine();
+
+            EndTime = DateTime.Now;
+
+            TimeTaken = EndTime - StartTime;
+            Console.WriteLine("Time taken = {0}ms", TimeTaken.TotalMilliseconds);
+            Console.ReadKey();
+
+            GetNumbers(RNG, Elephants);
+            StartTime = DateTime.Now;
+            Console.WriteLine("Sorting Array");
+            SortArrayEfficient(Elephants);
+
+            for (int i = 0; i < NumberofIntegers; i++)
+            {
+                Console.Write("{0}, ", Elephants[i]);
+            }
+            Console.WriteLine();
+
+            EndTime = DateTime.Now;
+
+            TimeTaken = EndTime - StartTime;
+            Console.WriteLine("Time taken = {0}ms", TimeTaken.TotalMilliseconds);
+            Console.ReadKey();
+
+            GetNumbers(RNG, Elephants);
+            StartTime = DateTime.Now;
+            Console.WriteLine("Sorting Array");
+            SortArrayPostCond(Elephants);
 
             for (int i = 0; i < NumberofIntegers; i++)
             {
@@ -76,5 +110,42 @@ namespace BubbleSort
                 }
             }
         }
+        static void SortArrayEfficient(int[] Elephants)
+        {
+            for (int i = 0; i < NumberofIntegers - 1; i++)
+            {
+                for (int j = 0; j < NumberofIntegers - i - 1; j++)
+                {
+                    if (Elephants[j] > Elephants[j + 1])
+                    {
+                        int Temp = Elephants[j];
+                        Elephants[j] = Elephants[j + 1];
+                        Elephants[j + 1] = Temp;
+                    }
+                }
+            }
+        }
+
+        static void SortArrayPostCond(int[] Elephants)
+        {
+            int count = 0;
+            bool NoSwap = true;
+            do
+            {
+                NoSwap = true;
+                for (int j = 0; j < NumberofIntegers - 1; j++)
+                {
+                    if (Elephants[j] > Elephants[j + 1])
+                    {
+                        int Temp = Elephants[j];
+                        Elephants[j] = Elephants[j + 1];
+                        Elephants[j + 1] = Temp;
+                        NoSwap = false;
+                    }
+                }
+                count++;
+            } while (NoSwap == false || count != NumberofIntegers - 1);
+        }
+
     }
 }
